@@ -16,8 +16,8 @@ export default function MoviePlayer() {
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
-          width="60%"
-          height="500"
+          width="100%"
+          height="600"
         />
       </div>
     </div>
