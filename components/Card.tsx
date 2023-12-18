@@ -37,7 +37,7 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
       <div className="relative w-full h-[37vh] mb-7">
         <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt={title}
+          alt={"Poster Image"}
           height={250}
            width={200}
           className="rounded-xl hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out"

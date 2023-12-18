@@ -2,10 +2,11 @@
 interface Data {
   results: Array<{
     id: number;
-    title: String;
-    poster_path: String;
-    original_name: String;
-    media_type: String;
+    title: string;
+    poster_path: string;
+    original_name: string;
+    media_type: string;
+    vote_average: number;
   }>;
 }
 import React, { useEffect, useState } from "react";
@@ -17,7 +18,7 @@ import GridComponent from "@components/GridComponent";
 export default function Search() {
   const [data, setData] = useState<Data>({ results: [] });
   const searchParams = useSearchParams();
-  const name = searchParams.get("name");
+  const name = String(searchParams.get("name"));
   useEffect(() => {
     multiSearch(name)
       .then((json: Data) => {

@@ -8,8 +8,8 @@ interface Data {
     original_name: String;
     media_type: String;
     runtime: number;
+    vote_average: number;
   }>;
-
 }
 import React, { useEffect, useState } from "react";
 import { topRated } from "@utils/requests";
@@ -17,14 +17,12 @@ import Card from "@components/Card";
 import Image from "next/image";
 import GridComponent from "@components/GridComponent";
 export default function Main() {
-  const [toprated, setTopRated] = useState<Data>({ results: [] });
- 
+  const [toprated, setTopRated] = useState<Data>({ results: [], media_type: "" });
 
   useEffect(() => {
     topRated()
       .then((json: Data) => {
         setTopRated(json);
-        console.log(json);
         toprated.media_type = "movie";
       })
       .catch((err: Error) => console.error("error:" + err));
@@ -49,7 +47,9 @@ export default function Main() {
         <p className="text-2xl pb-7 pl-5 pt-12">Top Rated</p>
       </div>
 
-      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 place-items-center`}>
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 place-items-center`}
+      >
         {toprated.results.map((result) => (
           <div key={result.id}>
             <Card
@@ -57,6 +57,7 @@ export default function Main() {
               media_type="movie"
               title={result.title || result.original_name}
               id={result.id}
+              vote_average={result.vote_average}
             />
           </div>
         ))}

@@ -4,7 +4,7 @@ import "@styles/globals.css";
 import Nav from '@components/Nav'
 import Footer from "@components/Footer";
 const montserrat = Montserrat({ subsets: ["latin"] });
-import Provider from "@components/Provider";
+// import Provider from "@components/Provider";
 export const metadata: Metadata = {
   title: "Streamble",
   description: "Watch Your Favourite Movies & Tv Shows",

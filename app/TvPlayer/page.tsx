@@ -3,14 +3,25 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { findById } from "@utils/requests";
 
+interface Season {
+  id: number;
+  season_number: number;
+  episode_count: number;
+}
+
+interface Show {
+  id: number;
+  seasons: Season[];
+}
+
 export default function TvPlayer() {
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const id = parseInt(searchParams.get("id") || "");
   const title = searchParams.get("title");
 
   const [season, setSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
-  const [show, setShow] = useState({});
+  const [show, setShow] = useState<Show>({} as Show);
 
   useEffect(() => {
     findById(id, "tv")
@@ -20,12 +31,12 @@ export default function TvPlayer() {
       .catch((err) => console.error("error:" + err));
   }, [id]);
 
-  const handleSeasonChange = (event) => {
+  const handleSeasonChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
     setSeason(Number(event.target.value));
     setEpisode(1);
   };
 
-  const handleEpisodeChange = (event) => {
+  const handleEpisodeChange = (event: React.ChangeEvent<HTMLSelectElement> ) => {
     setEpisode(Number(event.target.value));
   };
 

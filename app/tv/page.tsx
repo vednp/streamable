@@ -7,6 +7,7 @@ interface Data {
     poster_path: String;
     original_name: String;
     media_type: String;
+    vote_average: number;
   }>;
 
 }
@@ -16,7 +17,7 @@ import Card from "@components/Card";
 import Image from "next/image";
 import GridComponent from "@components/GridComponent";
 export default function Main() {
-  const [toprated, setTopRated] = useState<Data>({ results: [] });
+  const [toprated, setTopRated] = useState<Data>({ results: [], media_type: "" });
  
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function Main() {
               media_type="tv"
               title={result.title || result.original_name}
               id={result.id}
+              vote_average={result.vote_average} 
             />
           </div>
         ))}

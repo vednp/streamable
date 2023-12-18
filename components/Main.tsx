@@ -2,10 +2,11 @@
 interface Data {
   results: Array<{
     id: number;
-    title: String;
-    poster_path: String;
-    original_name: String;
-    media_type: String;
+    title: string;
+    poster_path: string;
+    original_name: string;
+    media_type: string;
+    vote_average: number;
   }>;
 
 }

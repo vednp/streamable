@@ -19,14 +19,15 @@ type TvPageProps = {
 };
 
 const MoviePage = () => {
-  const params = useParams();
-  const qid = params.id;
+  const params = useParams<any>(); 
+const qid = parseInt(params.id.toString());
   const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
 
   useEffect(() => {
     findById(qid, "tv")
-      .then((json: Response) => {
-        setShow(json);
+      .then((response: Response) => response.json())
+      .then((data: TvPageProps) => {
+        setShow(data);
       })
       .catch((err: Error) => console.error("error:" + err));
   }, [params.id]);

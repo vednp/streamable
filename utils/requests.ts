@@ -63,7 +63,7 @@ export async function multiSearch(text: String): Promise<any> {
 
 
 
-export async function topRated(text: String): Promise<any> {
+export async function topRated(): Promise<any> {
   const url = `https://api.themoviedb.org/3/movie/top_rated`;
   return fetch(url, options)
     .then((res: Response) => res.json())
