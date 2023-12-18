@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { findById } from "@utils/requests";
-// import { useSearchParams } from "next/navigation";
-// const searchParams = useSearchParams();
-// const id = searchParams.get("id");
+import { useParams } from "next/navigation";
 
-type Props = {
+type MoviePageProps = {
   movieProp: {
     id: number;
     title: string;
@@ -17,22 +15,23 @@ type Props = {
     release_date:String;
     runtime: number;
     genres: { id: number; name: string }[];
-  };
-  params: {
-    id: string;
+    production_companies: { name: string }[];
   };
 };
 
-const MoviePage: React.FC<Props> = ({movieProp, params}) => {
-  const [movie, setMovie] = useState({} as Props["movieProp"]);
+const MoviePage: React.FC<MoviePageProps> = ({movieProp}) => {
+  const params = useParams();
+ const qid = params.id;
+ console.log(qid);
+  const [movie, setMovie] = useState({});
 
   useEffect(() => {
-    findById(params.id, "movie")
-      .then((json: Props["movieProp"]) => {
+    findById(qid, "movie")
+      .then((json: Response) => {
         setMovie(json);
       })
       .catch((err: Error) => console.error("error:" + err));
-  }, [params.id]);
+  }, [qid]);
 
   const {
     id,
@@ -41,6 +40,7 @@ const MoviePage: React.FC<Props> = ({movieProp, params}) => {
     release_date,
     poster_path,
     genres,
+    production_companies,
     vote_average,
     runtime,
   } = movie;
@@ -68,7 +68,7 @@ const MoviePage: React.FC<Props> = ({movieProp, params}) => {
           <span className="text-gray-200 mb-2">Rating:</span>
           <div className="flex items-center mb-4">
             <Image src="/star.svg" alt="star" width={18} height={18}></Image>
-            <span className="text-gray-300 px-2">{vote_average}</span>
+            <span className="text-gray-300 ">{vote_average}</span>
           </div>
           <div className="p-5 flex space-x-4">
             <Link

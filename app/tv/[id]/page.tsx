@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { findById } from "@utils/requests";
+import { useParams } from "next/navigation";
 
 type TvPageProps = {
   tv: {
@@ -15,17 +16,15 @@ type TvPageProps = {
     number_of_episodes: number;
     genres: { id: number; name: string }[];
   };
-  params: {
-    id: string;
-  };
 };
 
-const MoviePage: React.FC<TvPageProps> = ({tv, params }) => {
+const MoviePage: React.FC<TvPageProps> = ({ tv }) => {
+  const params = useParams();
+  const qid = params.id;
   const [show, setShow] = useState({});
-  
 
   useEffect(() => {
-    findById(params.id, "tv")
+    findById(qid, "tv")
       .then((json: Response) => {
         setShow(json);
       })
@@ -43,8 +42,6 @@ const MoviePage: React.FC<TvPageProps> = ({tv, params }) => {
     number_of_episodes,
     seasons,
   } = show;
-
-
 
   return (
     <div className="movie-card mt-20 bg-gray-800 rounded-lg shadow-lg p-8 text-gray-300">
@@ -92,7 +89,10 @@ const MoviePage: React.FC<TvPageProps> = ({tv, params }) => {
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
-              ▶️ Watch Now <span className="ml-2 text-xs text-green-700 mb-4 ">SERVER 2</span>
+              ▶️ Watch Now{" "}
+              <span className="ml-2 text-xs text-green-700 mb-4 ">
+                SERVER 2
+              </span>
             </Link>
             <Link
               href={"/player"}
