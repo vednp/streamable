@@ -15,6 +15,9 @@ type TvPageProps = {
     number_of_episodes: number;
     genres: { id: number; name: string }[];
   };
+  params: {
+    id: string;
+  };
 };
 
 const MoviePage: React.FC<TvPageProps> = ({ params }) => {

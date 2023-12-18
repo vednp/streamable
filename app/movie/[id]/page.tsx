@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { findById } from "@utils/requests";
+// import { useSearchParams } from "next/navigation";
+// const searchParams = useSearchParams();
+// const id = searchParams.get("id");
+
 type Props = {
   movie: {
     id: number;
@@ -13,11 +17,13 @@ type Props = {
     release_date:String;
     runtime: number;
     genres: { id: number; name: string }[];
-    production_companies: { name: string }[];
+  };
+  params: {
+    id: string;
   };
 };
 
-const MoviePage: React.FC<Props> = ({ params }) => {
+const MoviePage: React.FC<Props> = ({params}) => {
   const [movie, setMovie] = useState({} as Props["movie"]);
 
   useEffect(() => {
@@ -35,7 +41,6 @@ const MoviePage: React.FC<Props> = ({ params }) => {
     release_date,
     poster_path,
     genres,
-    production_companies,
     vote_average,
     runtime,
   } = movie;
