@@ -18,18 +18,18 @@ type MoviePageProps = {
 };
 
 const MoviePage = () => {
-  const params = useParams();
-  const qid = params.id;
-  console.log(qid);
+  const params = useParams<any>();
+  const qid = parseInt(params.id.toString());
   const [movie, setMovie] = useState<MoviePageProps>({} as MoviePageProps);
 
   useEffect(() => {
     findById(qid, "movie")
-      .then((json: Response) => {
-        setMovie(json);
+      .then((response: Response) => response.json())
+      .then((data: MoviePageProps) => {
+        setMovie(data);
       })
       .catch((err: Error) => console.error("error:" + err));
-  }, [qid]);
+  }, [params.id]);
 
   const {
     id,
