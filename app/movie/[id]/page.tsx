@@ -16,15 +16,12 @@ type MoviePageProps = {
   genres: { id: number; name: string }[];
   production_companies: { name: string }[];
 };
-type NextPageProps = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-} & MoviePageProps;
-const MoviePage: React.FC<NextPageProps> = () => {
+
+const MoviePage = () => {
   const params = useParams();
   const qid = params.id;
   console.log(qid);
-  const [movie, setMovie] = useState({} as MoviePageProps);
+  const [movie, setMovie] = useState<MoviePageProps>({} as MoviePageProps);
 
   useEffect(() => {
     findById(qid, "movie")

@@ -5,7 +5,7 @@ import { findById } from "@utils/requests";
 import { useParams } from "next/navigation";
 
 type TvPageProps = {
-  tv: {
+
     id: number;
     original_name: string;
     overview: string;
@@ -15,13 +15,13 @@ type TvPageProps = {
     number_of_seasons: number;
     number_of_episodes: number;
     genres: { id: number; name: string }[];
-  };
+
 };
 
-const MoviePage: React.FC<TvPageProps> = ({ tv }) => {
+const MoviePage = () => {
   const params = useParams();
   const qid = params.id;
-  const [show, setShow] = useState({});
+  const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
 
   useEffect(() => {
     findById(qid, "tv")
@@ -40,7 +40,6 @@ const MoviePage: React.FC<TvPageProps> = ({ tv }) => {
     genres,
     number_of_seasons,
     number_of_episodes,
-    seasons,
   } = show;
 
   return (
@@ -108,4 +107,3 @@ const MoviePage: React.FC<TvPageProps> = ({ tv }) => {
 };
 
 export default MoviePage;
-export {};
