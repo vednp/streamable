@@ -41,7 +41,7 @@ export async function searchQuery(term: String): Promise<any> {
     });
 }
 
-export async function findById(id: Number,media_type:String): Promise<any> {
+export async function findById(id: Number, media_type: String): Promise<any> {
   const url = `https://api.themoviedb.org/3/${media_type}/${id}?api_key=dd2d1239e841de7cad005c356c877d80`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -60,8 +60,6 @@ export async function multiSearch(text: String): Promise<any> {
       throw err;
     });
 }
-
-
 
 export async function topRated(): Promise<any> {
   const url = `https://api.themoviedb.org/3/movie/top_rated`;
@@ -83,6 +81,17 @@ export async function tvTopRated(): Promise<any> {
     });
 }
 
+export async function EpisodeInfo(id:Number, season_number:Number, episode_number:Number): Promise<any> {
+  const url =
+    `https://api.themoviedb.org/3/tv/${id}/season/${season_number}/episode/${episode_number}?language=en-US`;
+
+  return fetch(url, options)
+    .then((res: Response) => res.json())
+    .catch((err: Error) => {
+      console.error("error:" + err);
+      throw err;
+    });
+}
 // module.exports = {
 //   dailyTrending: dailyTrending,
 //   weeklyTrending: weeklyTrending,
