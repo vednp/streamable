@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { findById } from "@utils/requests";
-import CustomIframe from "@components/CustomIframe";
 
 export default function TvPlayer() {
   const searchParams = useSearchParams();

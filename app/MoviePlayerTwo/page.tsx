@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useSearchParams } from "next/navigation";
-import CustomIframe from "@components/CustomIframe";
 
 export default function MoviePlayer() {
   const searchParams = useSearchParams();
