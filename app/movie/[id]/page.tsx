@@ -6,24 +6,25 @@ import { findById } from "@utils/requests";
 import { useParams } from "next/navigation";
 
 type MoviePageProps = {
-  movieProp: {
-    id: number;
-    title: string;
-    overview: string;
-    poster_path: string;
-    vote_average: number;
-    release_date:String;
-    runtime: number;
-    genres: { id: number; name: string }[];
-    production_companies: { name: string }[];
-  };
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  release_date: String;
+  runtime: number;
+  genres: { id: number; name: string }[];
+  production_companies: { name: string }[];
 };
-
-const MoviePage: React.FC<MoviePageProps> = ({movieProp}) => {
+type NextPageProps = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+} & MoviePageProps;
+const MoviePage: React.FC<NextPageProps> = () => {
   const params = useParams();
- const qid = params.id;
- console.log(qid);
-  const [movie, setMovie] = useState({});
+  const qid = params.id;
+  console.log(qid);
+  const [movie, setMovie] = useState({} as MoviePageProps);
 
   useEffect(() => {
     findById(qid, "movie")
@@ -40,7 +41,6 @@ const MoviePage: React.FC<MoviePageProps> = ({movieProp}) => {
     release_date,
     poster_path,
     genres,
-    production_companies,
     vote_average,
     runtime,
   } = movie;
@@ -57,12 +57,12 @@ const MoviePage: React.FC<MoviePageProps> = ({movieProp}) => {
           <h1 className="text-4xl font-bold playfair-display mb-4 text-teal-400">
             {title}
           </h1>
-          <p>{release_date && <p>{release_date.slice(0,4)}</p>}</p>
+          <p>{release_date && <p>{release_date.slice(0, 4)}</p>}</p>
           <p className="my-2">{runtime && <p>{runtime} min</p>}</p>
           <p className="my-2 text-gray-300">{overview}</p>
           <div className="flex mb-4">
             <span className="mr-4 text-gray-200">
-              Genre: {genres?.map((genre) => genre.name).join(', ')}
+              Genre: {genres?.map((genre) => genre.name).join(", ")}
             </span>
           </div>
           <span className="text-gray-200 mb-2">Rating:</span>
@@ -85,7 +85,10 @@ const MoviePage: React.FC<MoviePageProps> = ({movieProp}) => {
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
-              ▶️ Watch Now <span className="ml-2 text-xs text-green-700 mb-4 ">SERVER 2</span>
+              ▶️ Watch Now{" "}
+              <span className="ml-2 text-xs text-green-700 mb-4 ">
+                SERVER 2
+              </span>
             </Link>
             <Link
               href={"/player"}
