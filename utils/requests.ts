@@ -13,7 +13,7 @@ const options: RequestInit = {
   },
 };
 
-async function dailyTrending(): Promise<any> {
+export async function dailyTrending(): Promise<any> {
   return fetch(daily, options)
     .then((res: Response) => res.json())
     .catch((err: Error) => {
@@ -22,7 +22,7 @@ async function dailyTrending(): Promise<any> {
     });
 }
 
-async function weeklyTrending(): Promise<any> {
+export async function weeklyTrending(): Promise<any> {
   return fetch(weekly, options)
     .then((res: Response) => res.json())
     .catch((err: Error) => {
@@ -31,7 +31,7 @@ async function weeklyTrending(): Promise<any> {
     });
 }
 
-async function searchQuery(term: String): Promise<any> {
+export async function searchQuery(term: String): Promise<any> {
   const url = `https://api.themoviedb.org/3/search/multi?query=${term}&include_adult=false&language=en-US&page=1`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -41,7 +41,7 @@ async function searchQuery(term: String): Promise<any> {
     });
 }
 
-async function findById(id: Number,media_type:String): Promise<any> {
+export async function findById(id: Number,media_type:String): Promise<any> {
   const url = `https://api.themoviedb.org/3/${media_type}/${id}?api_key=dd2d1239e841de7cad005c356c877d80`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -51,7 +51,7 @@ async function findById(id: Number,media_type:String): Promise<any> {
     });
 }
 
-async function multiSearch(text: String): Promise<any> {
+export async function multiSearch(text: String): Promise<any> {
   const url = `https://api.themoviedb.org/3/search/multi?query=${text}&include_adult=false&language=en-US&page=1`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -63,7 +63,7 @@ async function multiSearch(text: String): Promise<any> {
 
 
 
-async function topRated(text: String): Promise<any> {
+export async function topRated(text: String): Promise<any> {
   const url = `https://api.themoviedb.org/3/movie/top_rated`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -73,7 +73,7 @@ async function topRated(text: String): Promise<any> {
     });
 }
 
-async function tvTopRated(): Promise<any> {
+export async function tvTopRated(): Promise<any> {
   const url = `https://api.themoviedb.org/3/tv/top_rated`;
   return fetch(url, options)
     .then((res: Response) => res.json())
@@ -82,12 +82,13 @@ async function tvTopRated(): Promise<any> {
       throw err;
     });
 }
-module.exports = {
-  dailyTrending: dailyTrending,
-  weeklyTrending: weeklyTrending,
-  searchQuery: searchQuery,
-  findById: findById,
-  multiSearch:multiSearch,
-  topRated:topRated,
-  tvTopRated:tvTopRated,
-};
+
+// module.exports = {
+//   dailyTrending: dailyTrending,
+//   weeklyTrending: weeklyTrending,
+//   searchQuery: searchQuery,
+//   findById: findById,
+//   multiSearch:multiSearch,
+//   topRated:topRated,
+//   tvTopRated:tvTopRated,
+// };
