@@ -24,13 +24,12 @@ const qid = parseInt(params.id.toString());
   const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
 
   useEffect(() => {
-    findById(qid, "tv")
-      .then((response: Response) => response.json())
-      .then((data: TvPageProps) => {
-        setShow(data);
+    findById(qid, "movie")
+      .then((res: TvPageProps) => {
+        setShow(res);
       })
       .catch((err: Error) => console.error("error:" + err));
-  }, [params.id]);
+  }, [qid]);
 
   const {
     id,
