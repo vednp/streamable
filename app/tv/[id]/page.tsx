@@ -20,7 +20,7 @@ type TvPageProps = {
   };
 };
 
-const MoviePage: React.FC<TvPageProps> = ({ params }) => {
+const MoviePage: React.FC<TvPageProps> = ({tv, params }) => {
   const [show, setShow] = useState({});
   
 

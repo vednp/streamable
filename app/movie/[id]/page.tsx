@@ -8,7 +8,7 @@ import { findById } from "@utils/requests";
 // const id = searchParams.get("id");
 
 type Props = {
-  movie: {
+  movieProp: {
     id: number;
     title: string;
     overview: string;
@@ -23,12 +23,12 @@ type Props = {
   };
 };
 
-const MoviePage: React.FC<Props> = ({params}) => {
-  const [movie, setMovie] = useState({} as Props["movie"]);
+const MoviePage: React.FC<Props> = ({movieProp, params}) => {
+  const [movie, setMovie] = useState({} as Props["movieProp"]);
 
   useEffect(() => {
     findById(params.id, "movie")
-      .then((json: Props["movie"]) => {
+      .then((json: Props["movieProp"]) => {
         setMovie(json);
       })
       .catch((err: Error) => console.error("error:" + err));
