@@ -11,14 +11,14 @@ export default function MoviePlayer() {
   return (
     <div>
       <div>
-        <CustomIframe
+        <iframe
           src={`https://vidsrc.to/embed/movie/${id}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
           width="100%"
           height="600">
-          </CustomIframe>
+          </iframe>
       </div>
     </div>
   );
