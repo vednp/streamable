@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { findById } from "@utils/requests";
-import MoviePlayer from "@app/MoviePlayer/page";
-type MoviePageProps = {
+type Props = {
   movie: {
     id: number;
     title: string;
@@ -18,12 +17,12 @@ type MoviePageProps = {
   };
 };
 
-const MoviePage: React.FC<MoviePageProps> = ({ params }) => {
-  const [movie, setMovie] = useState({} as MoviePageProps["movie"]);
+const MoviePage: React.FC<Props> = ({ params }) => {
+  const [movie, setMovie] = useState({} as Props["movie"]);
 
   useEffect(() => {
     findById(params.id, "movie")
-      .then((json: MoviePageProps["movie"]) => {
+      .then((json: Props["movie"]) => {
         setMovie(json);
       })
       .catch((err: Error) => console.error("error:" + err));
