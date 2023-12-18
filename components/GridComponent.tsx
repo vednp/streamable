@@ -17,7 +17,7 @@ type Props = {
 export default function GridComponent({ time, classNames }: Props) {
 
   return (
-    <div className={`${classNames}`}>
+    <div className={`${classNames} gap-8`}>
       {time.results
         .filter((result) => result.poster_path)
         .map((result) => (

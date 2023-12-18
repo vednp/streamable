@@ -24,7 +24,7 @@ const qid = parseInt(params.id.toString());
   const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
 
   useEffect(() => {
-    findById(qid, "movie")
+    findById(qid, "tv")
       .then((res: TvPageProps) => {
         setShow(res);
       })
