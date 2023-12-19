@@ -13,7 +13,7 @@ const Search: React.FC = () => {
   };
   return (
     <form autoComplete="off" onSubmit={handleSearch}>
-      <div className=" p-24 px-44">
+      <div className=" p-24 xl:px-72 sm:w-full">
         <div className="flex place-content-center	">
           <Image
             src={"/tv-solid.svg"}
@@ -22,7 +22,7 @@ const Search: React.FC = () => {
             alt="tv"
             className="mb-4 mr-2"
           />
-          <p className="text-center font-medium text-2xl pb-5 text-cyan-100">
+          <p className="text-center font-medium md:text-3xl sm:text-base pb-5 text-cyan-100">
             {" "}
             Watch Something
           </p>

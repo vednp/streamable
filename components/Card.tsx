@@ -32,7 +32,7 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
 
 
   return (
-    <div className="max-w-sm rounded relative block w-full " style={{ width: '200px', height: '380px' }}>
+    <div className="max-w-sm rounded relative block w-52 h-96  ">
       <Link href={`/${media_type}/${id}`}>
       <div className="relative w-full h-[37vh] mb-4">
         <Image
