@@ -34,7 +34,7 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
   return (
     <div className="max-w-sm rounded relative block w-52 h-96  ">
       <Link href={`/${media_type}/${id}`}>
-      <div className="relative w-full h-[37vh] mb-4">
+      <div className="relative w-full h-[37vh] mb-3">
         <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={"Poster Image"}
@@ -43,7 +43,7 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
           className="rounded-xl hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out"
         />
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2 ">
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-white text-xl line-clamp-1 ">
             {title}
