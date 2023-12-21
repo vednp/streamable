@@ -45,14 +45,14 @@ const MoviePage = () => {
 
   return (
     <div className="movie-card mt-20 bg-gray-800 rounded-lg shadow-lg p-8 text-gray-300">
-      <div className="flex">
+      <div className="lg:flex">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={title}
-          className="max-w-xs rounded-lg mr-8"
+          className=" w-44 sm:w-80 mb-5 rounded-lg mr-8 "
         />
-        <div>
-          <h1 className="text-4xl font-bold playfair-display mb-4 text-teal-400">
+        <div className="">
+          <h1 className="md:text-4xl sm:font-bold font-bold playfair-display mb-4 text-teal-400">
             {title}
           </h1>
           <p>{release_date && <p>{release_date.slice(0, 4)}</p>}</p>
@@ -68,7 +68,7 @@ const MoviePage = () => {
             <Image src="/star.svg" alt="star" width={18} height={18}></Image>
             <span className="text-gray-300 ">{vote_average}</span>
           </div>
-          <div className="p-5 flex space-x-4">
+          <div className="p-2 text-xs sm:text-base  flex space-x-4 ">
             <Link
               href={`/MoviePlayer?id=${id}`}
               passHref

@@ -44,14 +44,14 @@ const qid = parseInt(params.id.toString());
 
   return (
     <div className="movie-card mt-20 bg-gray-800 rounded-lg shadow-lg p-8 text-gray-300">
-      <div className="flex">
+      <div className="lg:flex">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={original_name}
           className="max-w-xs rounded-lg mr-8"
         />
         <div>
-          <h1 className="text-4xl font-bold playfair-display mb-4 text-teal-400">
+          <h1 className=" text-2xl mt-2 md:text-4xl sm:font-bold font-bold playfair-display mb-4 text-teal-400">
             {original_name}
           </h1>
           <p className="mb-4 text-gray-300">{overview}</p>
@@ -73,7 +73,7 @@ const qid = parseInt(params.id.toString());
             <span className="text-gray-200 font-medium">Rating:</span>
             <span className="text-gray-300 p-2"> ⭐️ {vote_average}</span>
           </div>
-          <div className="p-5 flex space-x-4">
+          <div className="p-5 flex space-x-4 text-xs sm:text-base">
             <Link
               href={`/TvPlayer?id=${id}&name=${original_name}`}
               passHref
