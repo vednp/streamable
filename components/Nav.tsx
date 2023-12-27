@@ -1,11 +1,17 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  RegisterLink,
+  LoginLink,
+  LogoutLink
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-function Nav() {
+const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user } = useKindeBrowserClient();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -14,7 +20,13 @@ function Nav() {
     <div className="bg-[#0b0f19] h-16 shadow-lg shadow-indigo-600 flex items-center justify-between">
       <Link href="/">
         <div className="flex ml-6">
-          <Image className="" src="/logo.png" height={40} width={40} alt="logo" />
+          <Image
+            className=""
+            src="/logo.png"
+            height={40}
+            width={40}
+            alt="logo"
+          />
           <p className="text-cyan-100 text-xl p-1 ml-1.5">Streamable</p>
         </div>
       </Link>
@@ -37,7 +49,11 @@ function Nav() {
         </div>
       </div>
       {/* Navigation Links */}
-      <div className={`md:flex text-cyan-100 mr-16 md:space-x-5 ${isMenuOpen ? 'block' : 'hidden'}`}>
+      <div
+        className={`items-center text-cyan-100 mr-16 md:space-x-5 md:flex ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
+      >
         <p className="hover:text-indigo-400 ">
           <Link href="/">Home</Link>
         </p>
@@ -47,9 +63,29 @@ function Nav() {
         <p className="hover:text-indigo-400">
           <Link href="/tv">TV</Link>
         </p>
+
+        {user ? (
+          <>
+          <p className="hover:text-indigo-400 underline">
+          <Link href="/watch-later">My Watchlist</Link>
+        </p>
+           <p className="hover:bg-indigo-400 border-2 border-blue-500 rounded-lg px-3 py-1 ">
+           <LogoutLink>Log Out</LogoutLink>
+         </p>
+         </>
+        ) : (
+          <>
+          <p className="hover:bg-indigo-400 border-2 border-blue-500 rounded-lg px-3 py-1 ">
+              <LoginLink>Log In</LoginLink>
+            </p>{" "}
+            <p className="hover:bg-indigo-400 border-2 border-blue-500 rounded-lg px-3 py-1 ">
+              <RegisterLink>Sign Up</RegisterLink>
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Nav;
