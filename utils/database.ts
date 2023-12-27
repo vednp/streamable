@@ -1,15 +1,20 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 const DATABASE_URL = process.env.DATABASE_URL;
-
+interface Cached {
+  conn: Mongoose | null;
+  promise: Promise<any> | null;
+}
 if (!DATABASE_URL) {
-  throw new Error("Please define the DATABASE_URL environment variable inside .env.local");
+  throw new Error(
+    "Please define the DATABASE_URL environment variable inside .env.local"
+  );
 }
 
-let cached = global.mongoose;
+let cached: Cached = (global as any).mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  let cached: Cached = (global as any).mongoose;
 }
 
 async function connectDB() {
@@ -21,10 +26,15 @@ async function connectDB() {
     const opts = {
       bufferCommands: false,
     };
-
-    cached.promise = mongoose.connect(DATABASE_URL, opts).then((mongoose) => {
-      return mongoose;
-    });
+    if (DATABASE_URL) {
+      cached.promise = mongoose.connect(DATABASE_URL, opts).then((mongoose) => {
+        return mongoose;
+      });
+    } else {
+      throw new Error(
+        "Please define the DATABASE_URL environment variable inside .env.local"
+      );
+    }
   }
   cached.conn = await cached.promise;
   return cached.conn;
