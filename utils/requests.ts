@@ -81,16 +81,6 @@ export async function tvTopRated(): Promise<any> {
     });
 }
 
-export async function findSingle(external_id : Number): Promise<any> {
-  const url = `https://api.themoviedb.org/3/find/${external_id}`;
-  return fetch(url, options)
-    .then((res: Response) => res.json())
-    .catch((err: Error) => {
-      console.error("error:" + err);
-      throw err;
-    });
-}
-
 export async function EpisodeInfo(id:Number, season_number:Number, episode_number:Number): Promise<any> {
   const url =
     `https://api.themoviedb.org/3/tv/${id}/season/${season_number}/episode/${episode_number}?language=en-US`;
@@ -102,4 +92,12 @@ export async function EpisodeInfo(id:Number, season_number:Number, episode_numbe
       throw err;
     });
 }
-
+// module.exports = {
+//   dailyTrending: dailyTrending,
+//   weeklyTrending: weeklyTrending,
+//   searchQuery: searchQuery,
+//   findById: findById,
+//   multiSearch:multiSearch,
+//   topRated:topRated,
+//   tvTopRated:tvTopRated,
+// };

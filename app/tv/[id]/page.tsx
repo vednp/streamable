@@ -3,30 +3,25 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { findById } from "@utils/requests";
 import { useParams } from "next/navigation";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Bookmark } from "lucide-react";
-import { Terminal } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 type TvPageProps = {
-  id: number;
-  original_name: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  number_of_seasons: number;
-  number_of_episodes: number;
-  genres: { id: number; name: string }[];
+
+    id: number;
+    original_name: string;
+    overview: string;
+    poster_path: string;
+    release_date: string;
+    vote_average: number;
+    number_of_seasons: number;
+    number_of_episodes: number;
+    genres: { id: number; name: string }[];
+
 };
 
 const MoviePage = () => {
-  const params = useParams<any>();
-  const qid = parseInt(params.id.toString());
+  const params = useParams<any>(); 
+const qid = parseInt(params.id.toString());
   const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
-  const [showAlert, setShowAlert] = useState(false);
-  const [showExistAlert, setShowExistAlert] = useState(false);
 
   useEffect(() => {
     findById(qid, "tv")
@@ -46,24 +41,6 @@ const MoviePage = () => {
     number_of_seasons,
     number_of_episodes,
   } = show;
-
-  const handleSaveLater = async () => {
-    const response = await fetch(`/api/watchlater/${id}/tv`);
-    const data = await response.json();
-    const { success, exists } = data;
-    if (success) {
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-    }
-    if (exists) {
-      setShowExistAlert(true);
-      setTimeout(() => {
-        setShowExistAlert(false);
-      }, 3000);
-    }
-  };
 
   return (
     <div className="movie-card mt-20 bg-gray-800 rounded-lg shadow-lg p-8 text-gray-300">
@@ -116,38 +93,15 @@ const MoviePage = () => {
                 SERVER 2
               </span>
             </Link>
-           <button
-              onClick={handleSaveLater}
-              className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl flex items-center space-x-2 hover:border-indigo-900"
+            <Link
+              href={"/player"}
+              className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
-              <Bookmark height={18} width={18} />
-              <span>Watch Later</span>
-            </button>
+              🏷️ Watch Later
+            </Link>
           </div>
         </div>
       </div>
-      {showAlert && (
-        <div className="absolute top-4 right-4">
-          <Alert>
-            <Terminal className="h-3 w-3" />
-            <AlertTitle>Success</AlertTitle>
-            <AlertDescription>
-              You have successfully added this movie to your watch later list.
-            </AlertDescription>
-          </Alert>
-        </div>
-      )}
-      {showExistAlert && (
-        <div className="absolute top-4 right-4">
-          <Alert>
-            <Terminal className="h-3 w-3" />
-            <AlertTitle>Already Added</AlertTitle>
-            <AlertDescription>
-              You have already added this show to your watch later list.
-            </AlertDescription>
-          </Alert>
-        </div>
-      )}
     </div>
   );
 };

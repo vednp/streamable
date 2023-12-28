@@ -1,40 +1,24 @@
 import { Schema, model, models } from "mongoose";
 
-const SavedMovieSchema = new Schema({
-  media_type: {
-    type: String,
-  },
-  movieId: {
-    type: Number,
-  },
-  poster_path: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  vote_average: {
-    type: Number,
-  },
-});
-
-const User = new Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     unique: [true, "Email already exists!"],
     required: [true, "Email is required!"],
   },
-  username: {
+  password: {
     type: String,
-    required: [true, "Username is required!"],
+    required: [true, "Password is required!"],
+    match: [
+      /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+      "Password invalid, it should contain 8-20 alphanumeric letters and be unique!",
+    ],
   },
   image: {
     type: String,
   },
-  savedMovies: {
-    type: [SavedMovieSchema], // Array of objects
-    default: [], // Default to an empty array
-  },
 });
 
-export default models.User || model("User", User);
+const User = models.User || model("User", UserSchema);
+
+export default User;
