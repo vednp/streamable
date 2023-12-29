@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Card from "@components/Card";
-import { X } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
 
 export default function Page() {
   const [watchlist, setWatchlist] = useState([]);
@@ -10,12 +10,15 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/savedmovies");
+        const response = await fetch("/api/getsaved");
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
         const data = await response.json();
         setWatchlist(data);
+
+        console.log("watchlist:", watchlist);
+        console.log("typeof watchlist:", typeof watchlist);
         setDataLoaded(true);
       } catch (error) {
         console.log(error);
@@ -37,9 +40,6 @@ export default function Page() {
       console.error("Error deleting movie:", error);
     }
   };
-
-  console.log("watchlist:", watchlist);
-  console.log("typeof watchlist:", typeof watchlist);
 
   return (
     <div>
@@ -79,7 +79,10 @@ export default function Page() {
               )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>
+          {" "}
+          <Loader2 className="w-6 h-6 text-cyan-100 animate-spin ml-28" />
+        </p>
       )}
     </div>
   );
