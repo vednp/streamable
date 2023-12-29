@@ -13,9 +13,9 @@ const nextConfig = {
   },
 };
 
+module.exports = nextConfig;
 module.exports = {
-    nextConfig,
-    images: {
-      domains: ['tmdb.org', 'themoviedb.org', 'image.tmdb.org'],
-    },
-  };
+  images: {
+    domains: ["tmdb.org", "themoviedb.org", "image.tmdb.org"],
+  },
+};

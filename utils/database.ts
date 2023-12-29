@@ -7,7 +7,7 @@ declare global {
 }
 
 if (!DATABASE_URL) {
-  throw new Error("Please define the DATABASE_URL environment variable inside .env.local");
+  throw new Error("Please define the DATABASE_URL environment variable inside .env");
 }
 
 let cached = global.mongoose;
