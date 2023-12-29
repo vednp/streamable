@@ -98,7 +98,7 @@ const MoviePage = () => {
           </div>
           <div className="p-5 flex space-x-4 text-xs sm:text-base">
             <Link
-              href={`/TvPlayer?id=${id}&name=${original_name}`}
+              href={`/TvPlayerTwo?id=${id}&name=${original_name}`}
               passHref
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
@@ -106,7 +106,7 @@ const MoviePage = () => {
               ▶️ Watch Now
             </Link>
             <Link
-              href={`/TvPlayerTwo?id=${id}&name=${original_name}`}
+              href={`/TvPlayer?id=${id}&name=${original_name}`}
               passHref
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"

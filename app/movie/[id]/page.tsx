@@ -88,12 +88,12 @@ const MoviePage = () => {
           </div>
           <span className="text-gray-200 mb-2">Rating:</span>
           <div className="flex items-center mb-4">
-            <Image src="/star.svg" alt="star" width={18} height={18}></Image>
-            <span className="text-gray-300 ">{vote_average}</span>
+            
+            <span className="text-gray-300 "> ⭐️ {vote_average}</span>
           </div>
           <div className="p-2 text-xs sm:text-base  flex space-x-4 ">
             <Link
-              href={``}
+              href={`/MoviePlayerTwo?id=${id}&name=${title}`}
               passHref
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
@@ -101,7 +101,7 @@ const MoviePage = () => {
               ▶️ Watch Now
             </Link>
             <Link
-              href={`/MoviePlayerTwo?id=${id}&name=${title}`}
+              href={`/MoviePlayer?id=${id}&name=${title}`}
               passHref
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
