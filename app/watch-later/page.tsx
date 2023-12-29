@@ -38,6 +38,9 @@ export default function Page() {
     }
   };
 
+  console.log("watchlist:", watchlist);
+  console.log("typeof watchlist:", typeof watchlist);
+
   return (
     <div>
       <h1 className="text-4xl font-light p-9 mb-5 text-cyan-100 ">
@@ -47,23 +50,33 @@ export default function Page() {
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 px-16 py-7 align-center`}
         >
-          {watchlist
-            .filter((result: { poster_path: string }) => result.poster_path)
-            .map((result: { poster_path: string; media_type: string; title: string; vote_average: number; movieId: number; original_name: string }) => (
-              <div className="relative pt-3" key={result.movieId}>
-                <X
-                  className="w-6 h-6 cursor-pointer text-cyan-100 absolute right-0 top-0"
-                  onClick={() => handleDelete(result.movieId)}
-                />
-                <Card
-                  poster_path={result.poster_path}
-                  media_type={result.media_type}
-                  title={result.title || result.original_name}
-                  vote_average={result.vote_average}
-                  id={result.movieId}
-                />
-              </div>
-            ))}
+          {watchlist &&
+            watchlist
+              .filter((result: { poster_path: string }) => result.poster_path)
+              .map(
+                (result: {
+                  poster_path: string;
+                  media_type: string;
+                  title: string;
+                  vote_average: number;
+                  movieId: number;
+                  original_name: string;
+                }) => (
+                  <div className="relative pt-3" key={result.movieId}>
+                    <X
+                      className="w-6 h-6 cursor-pointer text-cyan-100 absolute right-0 top-0"
+                      onClick={() => handleDelete(result.movieId)}
+                    />
+                    <Card
+                      poster_path={result.poster_path}
+                      media_type={result.media_type}
+                      title={result.title || result.original_name}
+                      vote_average={result.vote_average}
+                      id={result.movieId}
+                    />
+                  </div>
+                )
+              )}
         </div>
       ) : (
         <p>Loading...</p>
