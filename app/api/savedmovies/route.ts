@@ -2,12 +2,12 @@ import connectDB from "@utils/database";
 import User from "@utils/models/User";
 import { redirect } from "next/navigation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-export const GET = async (request: Request) => {
+export const GET = async () => {
   const { getUser } = getKindeServerSession();
   const kindeUser = await getUser();
 
   if (kindeUser == null) {
-    redirect("/login");
+    return new Response(JSON.stringify({ error: "Authentication Required" }), { status: 200 });
   }
   try {
     await connectDB();
