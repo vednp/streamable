@@ -45,11 +45,11 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
       </div>
       <div className="flex flex-col gap-2 ">
         <div className="flex justify-between items-center gap-1">
-          <h2 className="font-bold text-white text-xl mt-6 line-clamp-1 ">
+          <h2 className="font-bold text-white text-xl mt-2 line-clamp-1 ">
             {title}
           </h2>
           <div className=" px-2 bg-[#161921] rounded-sm">
-            <p className="text-white text-sm mt-6 font-bold capitalize">
+            <p className="text-white text-sm mt-4 font-bold capitalize">
               {media_type}
             </p>
           </div>
