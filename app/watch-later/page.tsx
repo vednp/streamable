@@ -24,7 +24,7 @@ export default function Page() {
     try {
       const res = await fetch(`/api/deletesaved/${movieId}`);
       const updatedUser = await res.json();
-
+      console.log(updatedUser);
       if (updatedUser) {
         setWatchlist(updatedUser.savedMovies);
       }
