@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Megaphone } from "lucide-react";
 const Search: React.FC = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
@@ -13,7 +14,7 @@ const Search: React.FC = () => {
   };
   return (
     <form autoComplete="off" onSubmit={handleSearch}>
-      <div className=" p-24 xl:px-72 sm:w-full">
+      <div className=" p-20 xl:px-72 sm:w-full">
         <div className="flex place-content-center	">
           <Image
             src={"/tv-solid.svg"}
