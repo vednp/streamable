@@ -50,7 +50,7 @@ export default function Page() {
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 px-16 py-7 align-center`}
         >
-          {watchlist &&
+          {watchlist.length > 0 &&
             watchlist
               .filter((result: { poster_path: string }) => result.poster_path)
               .map(
