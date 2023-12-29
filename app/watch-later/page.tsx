@@ -16,9 +16,7 @@ export default function Page() {
         }
         const data = await response.json();
         setWatchlist(data);
-
-        console.log("watchlist:", watchlist);
-        console.log("typeof watchlist:", typeof watchlist);
+        console.log(data);
         setDataLoaded(true);
       } catch (error) {
         console.log(error);
@@ -52,7 +50,7 @@ export default function Page() {
         >
           {watchlist.length > 0 &&
             watchlist
-              .filter((result: { poster_path: string }) => result.poster_path)
+              .filter((result: { poster_path: string }) => result.poster_path )
               .map(
                 (result: {
                   poster_path: string;
