@@ -22,6 +22,12 @@ interface EpisodeInfoProp {
 }
 
 export default function TvPlayer() {
+  // var frames = document.getElementsByTagName('iframe');
+  // Array.prototype.forEach.call(frames, function(frame) {
+  //     frame.setAttribute("sandbox", "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms");
+  // });
+
+  
   const searchParams = useSearchParams();
   const id = parseInt(searchParams.get("id") || "");
   const title = searchParams.get("title");
@@ -61,17 +67,15 @@ export default function TvPlayer() {
 
   const {overview, name, episode_number, season_number} = episodeInfo
 
-  var frames = document.getElementsByTagName('iframe');
-for (var i = 0; i < frames.length; i++) {
-    var frame = frames[i];
-    frame.setAttribute("sandbox", "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms");
-}
+
+  
 
   return (
     <div>
       <div className="mt-12 ml-9 flex ">
         <iframe
-          src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
+          // src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
+          src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
