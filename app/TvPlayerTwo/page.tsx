@@ -22,13 +22,6 @@ interface EpisodeInfoProp {
 }
 
 export default function TvPlayer() {
-  // var frames = document.getElementsByTagName("iframe");
-  // Array.prototype.forEach.call(frames, function (frame) {
-  //   frame.setAttribute(
-  //     "sandbox",
-  //     "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms"
-  //   );
-  // });
 
   const searchParams = useSearchParams();
   const id = parseInt(searchParams.get("id") || "");
