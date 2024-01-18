@@ -13,7 +13,7 @@ export default function MoviePlayer() {
     <div>
       <div>
         <iframe
-          src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+          src={`https://embed.smashystream.com/playere.php?tmdb=${id}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"

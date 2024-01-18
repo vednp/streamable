@@ -69,8 +69,7 @@ export default function TvPlayer() {
     <div>
       <div className="mt-12 ml-9 flex ">
         <iframe
-          // src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
-          src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`}
+          src={`https://embed.smashystream.com/playere.php?tmdb=${id}_ID&season=${season}&episode=${episode}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
