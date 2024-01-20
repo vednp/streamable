@@ -136,9 +136,9 @@ const Nav = () => {
           <Link href="/tv">TV</Link>
         </p>
 
-        {user ? (
+        {!user ? (
           <>
-            <p className="hover:text-indigo-400 underline">
+            <p className="hover:bg-indigo-400 bg-blue-500 text-black px-3 py-1 rounded-lg ">
               <Link href="/watch-later">My Watchlist</Link>
             </p>
             <p className="hover:bg-indigo-400 border-2 border-blue-500 rounded-lg px-3 py-1 ">
