@@ -16,6 +16,7 @@ const nextConfig = {
 module.exports = nextConfig;
 module.exports = {
   images: {
+    unoptimized: true,
     domains: ["tmdb.org", "themoviedb.org", "image.tmdb.org"],
   },
 };
