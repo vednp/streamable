@@ -11,26 +11,6 @@ type Props = {
 
 export default function Card({poster_path, title, media_type, vote_average, id}: Props) {
 
-// !!!!!!! OLD DESIGN !!!!!!
-//   return (
-// <section>
-//     <Link href={`/${media_type}/${id}`}>
-//     <div className='bg-[#0b0f19] p-3 rounded-lg flex flex-col items-center shadow-lg shadow-indigo-500/40 hover:overflow-hidden hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out' style={{ width: '240px', height: '380px' }}>
-//         <Image
-//         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-//         height={250}
-//         width={200}
-//         alt='Image'
-//         className='mb-2'
-//         />
-//         <p className='text-center text-sm'>{title}</p>
-//     </div>
-//     </Link>
-//     </section>
-//   )
-// }
-
-
   return (
     <div className="max-w-sm rounded relative block w-52 h-96  ">
       <Link href={`/${media_type}/${id}`}>

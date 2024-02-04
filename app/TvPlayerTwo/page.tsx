@@ -67,7 +67,8 @@ export default function TvPlayer() {
     <div>
       <div className="mt-12 ml-9 flex ">
         <iframe
-          src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
+          // src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
+          src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode${episode}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"

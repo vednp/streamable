@@ -11,7 +11,8 @@ export default function MoviePlayer() {
     <div>
       <div>
         <iframe
-          src={`https://vidsrc.to/embed/movie/${id}`}
+          // src={`https://vidsrc.to/embed/movie/${id}`}
+          src={`https://blackvid.space/embed?tmdb=${id}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
