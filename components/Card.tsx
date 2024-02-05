@@ -12,8 +12,8 @@ type Props = {
 export default function Card({poster_path, title, media_type, vote_average, id}: Props) {
 
   return (
-    <div className="max-w-sm rounded relative block w-52 h-96  ">
-      <Link href={`/${media_type}/${id}`}>
+    <div className="max-w-sm rounded relative block w-52  ">
+      <Link className='flex-col justify-between' href={`/${media_type}/${id}`}>
       <div className="relative w-full h-[37vh] mb-3">
         <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}

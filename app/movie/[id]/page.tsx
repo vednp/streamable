@@ -91,12 +91,12 @@ const MoviePage = () => {
             
             <span className="text-gray-300 "> ⭐️ {vote_average}</span>
           </div>
-          <div className="p-2 text-xs sm:text-base  flex space-x-4 ">
+          <div className=" text-xs sm:text-base flex flex-col md:flex-row md:space-x-4 space-y-3">
             <Link
               href={`/MoviePlayerTwo?id=${id}&name=${title}`}
               passHref
               rel="noopener noreferrer"
-              className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
+              className="ml-2 mt-3 px-4 pt-2 h-11 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
               ▶️ Watch Now
             </Link>

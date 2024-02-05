@@ -63,12 +63,20 @@ export default function TvPlayer() {
 
   const { overview, name, episode_number, season_number } = episodeInfo;
 
+  var frames = document.getElementsByTagName("iframe");
+  for (var i = 0; i < frames.length; i++) {
+    var frame = frames[i];
+    frame.setAttribute(
+      "sandbox",
+      "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms"
+    );
+  }
+
   return (
     <div>
       <div className="mt-12 ml-9 flex ">
         <iframe
-          // src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
-          src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode${episode}`}
+          src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
