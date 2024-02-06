@@ -12,9 +12,9 @@ type Props = {
 export default function Card({poster_path, title, media_type, vote_average, id}: Props) {
 
   return (
-    <div className="max-w-sm rounded relative block w-52  ">
+    <div className="max-w-sm rounded relative py-2 block w-52  ">
       <Link className='flex-col justify-between' href={`/${media_type}/${id}`}>
-      <div className="relative w-full h-[37vh] mb-3">
+      <div className=" w-full h-[37vh] mb-3">
         <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={"Poster Image"}
@@ -23,12 +23,12 @@ export default function Card({poster_path, title, media_type, vote_average, id}:
           className="rounded-xl hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out"
         />
       </div>
-      <div className="flex flex-col gap-2 ">
+      <div className="flex flex-col gap-2 backdrop-blur-sm">
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-white text-xl mt-2 line-clamp-1 ">
             {title}
           </h2>
-          <div className=" px-2 bg-[#161921] rounded-sm">
+          <div className=" px-2 rounded-sm">
             <p className="text-white text-sm mt-4 font-bold capitalize">
               {media_type}
             </p>
