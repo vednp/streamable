@@ -5,7 +5,7 @@ import Image from "next/image";
 import { findById } from "@utils/requests";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { Bookmark } from "lucide-react";
+import { Bookmark, Play, PlayIcon } from "lucide-react";
 import { Terminal } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -98,7 +98,9 @@ const MoviePage = () => {
               rel="noopener noreferrer"
               className="ml-2 mt-3 px-4 pt-2 h-11 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
-              ▶️ Watch Now
+              <div className="flex items-center space-x-2">
+              <span><Play/></span> Watch Now
+              </div>
             </Link>
             <Link
               href={`/MoviePlayer?id=${id}&name=${title}`}
@@ -106,10 +108,12 @@ const MoviePage = () => {
               rel="noopener noreferrer"
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
-              ▶️ Watch Now{" "}
-              <span className="ml-2 text-xs text-green-700 mb-4 ">
+              <div className="flex items-center space-x-2">
+              <PlayIcon/> Watch Now{" "}
+              <span className="ml-2 text-xs text-green-700  ">
                 SERVER 2
               </span>
+              </div>
             </Link>
             <button
               onClick={handleSaveLater}
