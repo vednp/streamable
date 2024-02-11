@@ -76,7 +76,8 @@ export default function TvPlayer() {
     <div>
       <div className="mt-12 ml-9 flex ">
         <iframe
-          src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
+        src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
+          // src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
