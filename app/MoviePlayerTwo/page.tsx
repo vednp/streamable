@@ -23,7 +23,7 @@ export default function MoviePlayer() {
           // src={`https://embed.smashystream.com/playere.php?tmdb=${id}`}
           src={`https://vidsrc.to/embed/movie/${id}`}
           // src={` https://www.2embed.cc/embed/${id}`}
-          referrerPolicy="origin"
+
           allowFullScreen
           title="Embedded Content"
           width="100%"
