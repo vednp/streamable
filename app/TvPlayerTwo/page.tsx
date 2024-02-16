@@ -22,7 +22,6 @@ interface EpisodeInfoProp {
 }
 
 export default function TvPlayer() {
-
   const searchParams = useSearchParams();
   const id = parseInt(searchParams.get("id") || "");
   const title = searchParams.get("title");
@@ -63,20 +62,20 @@ export default function TvPlayer() {
 
   const { overview, name, episode_number, season_number } = episodeInfo;
 
-  var frames = document.getElementsByTagName("iframe");
-  for (var i = 0; i < frames.length; i++) {
-    var frame = frames[i];
-    frame.setAttribute(
-      "sandbox",
-      "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms"
-    );
-  }
+  // var frames = document.getElementsByTagName("iframe");
+  // for (var i = 0; i < frames.length; i++) {
+  //   var frame = frames[i];
+  //   frame.setAttribute(
+  //     "sandbox",
+  //     "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms"
+  //   );
+  // }
 
   return (
     <div>
-      <div className="mt-12 ml-9 flex ">
+      <div className="mt-12 md:ml-9 md:flex flex-col">
         <iframe
-        src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
+          src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
           // src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
           referrerPolicy="origin"
           allowFullScreen
@@ -84,7 +83,7 @@ export default function TvPlayer() {
           width="100%"
           height="550"
         ></iframe>
-        <div className="m-9 flex-col w-2/5">
+        <div className="m-9 flex-col md:w-2/5">
           <p className="text-sm mb-4 font-light text-cyan-100">
             <span className="mr-4">SEASON {season_number}</span>EPISODE{" "}
             {episode_number}
@@ -93,7 +92,7 @@ export default function TvPlayer() {
           <p className="text-cyan-100">{overview}</p>
         </div>
       </div>
-      <div className="flex justify-center ">
+      <div className=" flex-col md:flex justify-center ">
         <div className="flex flex-col space-y-2 p-5">
           <label htmlFor="season" className="text-sm font-medium text-cyan-100">
             Season:
