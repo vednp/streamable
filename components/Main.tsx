@@ -1,4 +1,9 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { dailyTrending, weeklyTrending } from "@utils/requests";
+import Image from "next/image";
+import GridComponent from "./GridComponent";
+
 interface Data {
   results: Array<{
     id: number;
@@ -8,30 +13,43 @@ interface Data {
     media_type: string;
     vote_average: number;
   }>;
-
 }
-import React, { useEffect, useState } from "react";
-import { dailyTrending, weeklyTrending } from "@utils/requests";
-import Card from "./Card";
-import Image from "next/image";
-import GridComponent from "./GridComponent";
+
 export default function Main() {
   const [daily, setDaily] = useState<Data>({ results: [] });
   const [weekly, setWeekly] = useState<Data>({ results: [] });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dailyTrending()
-      .then((json: Data) => {
+    const fetchDailyTrending = async () => {
+      try {
+        const json = await dailyTrending();
         setDaily(json);
-      })
-      .catch((err: Error) => console.error("error:" + err));
+      } catch (err) {
+        console.error("Error fetching daily trending data:", err);
+      }
+    };
 
-    weeklyTrending()
-      .then((json: Data) => {
+    const fetchWeeklyTrending = async () => {
+      try {
+        const json = await weeklyTrending();
         setWeekly(json);
-      })
-      .catch((err: Error) => console.error("error:" + err));
+      } catch (err) {
+        console.error("Error fetching weekly trending data:", err);
+      }
+    };
+
+    fetchDailyTrending();
+    fetchWeeklyTrending();
   }, []);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [daily, weekly]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="text-cyan-100 px-9 ">
@@ -45,14 +63,12 @@ export default function Main() {
         />
         <p className="text-2xl pb-7 pl-5 pt-12">Trending Today</p>
       </div>
-
       <GridComponent
         classNames={
           "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 place-items-center"
         }
         time={daily}
       />
-
       <div className="flex">
         <Image
           src={"/arrow-trend-up-solid.svg"}

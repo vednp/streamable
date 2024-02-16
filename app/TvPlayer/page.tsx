@@ -22,14 +22,15 @@ interface EpisodeInfoProp {
 }
 
 export default function TvPlayer() {
-
   const searchParams = useSearchParams();
   const id = parseInt(searchParams.get("id") || "");
   const title = searchParams.get("title");
 
   const [season, setSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
-  const [episodeInfo, setEpisodeInfo] = useState<EpisodeInfoProp>({} as EpisodeInfoProp);
+  const [episodeInfo, setEpisodeInfo] = useState<EpisodeInfoProp>(
+    {} as EpisodeInfoProp
+  );
   const [show, setShow] = useState<Show>({} as Show);
 
   useEffect(() => {
@@ -40,12 +41,11 @@ export default function TvPlayer() {
       .catch((err) => console.error("error:" + err));
 
     EpisodeInfo(id, season, episode)
-    .then((json) => {
-        console.log(json)
-        setEpisodeInfo(json)
+      .then((json) => {
+        console.log(json);
+        setEpisodeInfo(json);
       })
       .catch((err) => console.error("error:" + err));
-
   }, [id, season, episode]);
 
   const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -60,28 +60,29 @@ export default function TvPlayer() {
   let selectedSeason =
     show.seasons && show.seasons.find((s) => s.season_number === season);
 
-  const {overview, name, episode_number, season_number} = episodeInfo
-
+  const { overview, name, episode_number, season_number } = episodeInfo;
 
   return (
     <div>
-      <div className="mt-12 ml-9 flex ">
+      <div className="mt-12 md:ml-9 flex flex-col md:flex-row ">
         <iframe
           // src={`https://embed.smashystream.com/playere.php?tmdb=${id}_ID&season=${season}&episode=${episode}`}
           src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
-          referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
           width="100%"
           height="550"
         ></iframe>
-        <div className="m-9 flex-col w-2/5">
-        <p className="text-sm mb-4 font-light text-cyan-100"><span className="mr-4">SEASON {season_number}</span>EPISODE {episode_number}</p>
-        <p className="text-3xl mb-4 font-bold text-cyan-100">{name}</p>
-        <p className="text-cyan-100">{overview}</p>
+        <div className="m-9 flex-col md:w-2/5">
+          <p className="text-sm mb-4 font-light text-cyan-100">
+            <span className="mr-4">SEASON {season_number}</span>EPISODE{" "}
+            {episode_number}
+          </p>
+          <p className="text-3xl mb-4 font-bold text-cyan-100">{name}</p>
+          <p className="text-cyan-100">{overview}</p>
         </div>
       </div>
-      <div className="flex justify-center ">
+      <div className=" flex flex-col md:flex-row ml-16 md:ml-0 justify-center ">
         <div className="flex flex-col space-y-2 p-5">
           <label htmlFor="season" className="text-sm font-medium text-cyan-100">
             Season:

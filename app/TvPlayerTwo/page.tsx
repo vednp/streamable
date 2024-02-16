@@ -73,7 +73,7 @@ export default function TvPlayer() {
 
   return (
     <div>
-      <div className="mt-12 md:ml-9 md:flex flex-col">
+      <div className="mt-12 md:ml-9 flex md:flex-row flex-col">
         <iframe
           src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
           // src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
@@ -111,7 +111,7 @@ export default function TvPlayer() {
               ))}
           </select>
         </div>
-        <div className="flex flex-col space-y-2 p-5">
+        <div className="flex flex-col md:flex-row space-y-2 p-5">
           <label
             htmlFor="episode"
             className="text-sm font-medium text-cyan-100"
