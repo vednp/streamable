@@ -1,14 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { findById } from "@utils/requests";
 import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { Bookmark, Play, PlayIcon } from "lucide-react";
 import { Terminal } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 type MoviePageProps = {
   id: number;
   title: string;
@@ -23,11 +21,12 @@ type MoviePageProps = {
 
 const MoviePage = () => {
   const params = useParams();
+  const { user } = useKindeBrowserClient();
   const qid = Number(params.id);
   const [movie, setMovie] = useState<MoviePageProps>({} as MoviePageProps);
   const [showAlert, setShowAlert] = useState(false);
   const [showExistAlert, setShowExistAlert] = useState(false);
-
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   useEffect(() => {
     findById(qid, "movie")
       .then((res: MoviePageProps) => {
@@ -48,6 +47,12 @@ const MoviePage = () => {
   } = movie;
 
   const handleSaveLater = async () => {
+    if (!user) {
+      setUserLoggedIn(true);
+      setTimeout(() => {
+        setUserLoggedIn(false);
+      }, 3000);
+    }  
     const response = await fetch(`/api/watchlater/${id}/movie`);
     console.log(response);
     const data = await response.json();
@@ -57,8 +62,7 @@ const MoviePage = () => {
       setTimeout(() => {
         setShowAlert(false);
       }, 3000);
-    }
-    if (exists) {
+    } else if (exists) {
       setShowExistAlert(true);
       setTimeout(() => {
         setShowExistAlert(false);
@@ -88,7 +92,6 @@ const MoviePage = () => {
           </div>
           <span className="text-gray-200 mb-2">Rating:</span>
           <div className="flex items-center mb-4">
-            
             <span className="text-gray-300 "> ⭐️ {vote_average}</span>
           </div>
           <div className=" text-xs sm:text-base flex flex-col md:flex-row md:space-x-4 space-y-3">
@@ -99,7 +102,10 @@ const MoviePage = () => {
               className="ml-2 mt-3 px-4 pt-2 h-11 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
               <div className="flex items-center space-x-2">
-              <span><Play/></span> Watch Now
+                <span>
+                  <Play />
+                </span>{" "}
+                Watch Now
               </div>
             </Link>
             <Link
@@ -109,10 +115,8 @@ const MoviePage = () => {
               className="ml-2 px-4 py-2 text-indigo-200 border-indigo-600 border-2 rounded-xl hover:border-indigo-900"
             >
               <div className="flex items-center space-x-2">
-              <PlayIcon/> Watch Now{" "}
-              <span className="ml-2 text-xs text-green-700  ">
-                SERVER 2
-              </span>
+                <PlayIcon /> Watch Now{" "}
+                <span className="ml-2 text-xs text-green-700  ">SERVER 2</span>
               </div>
             </Link>
             <button
@@ -125,6 +129,17 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+      {userLoggedIn && (
+        <div className="absolute top-4 right-4">
+          <Alert>
+            <Terminal className="h-3 w-3" />
+            <AlertTitle>Log In to add movie to watch later</AlertTitle>
+            <AlertDescription>
+              Please log in to add this movie to your watch later list.
+            </AlertDescription>
+          </Alert>
+        </div>
+      )}
       {showAlert && (
         <div className="absolute top-4 right-4">
           <Alert>

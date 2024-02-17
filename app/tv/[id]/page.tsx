@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Bookmark, Play, PlayIcon } from "lucide-react";
 import { Terminal } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 type TvPageProps = {
   id: number;
@@ -22,11 +23,13 @@ type TvPageProps = {
 };
 
 const MoviePage = () => {
+  const { user } = useKindeBrowserClient();
   const params = useParams<any>();
   const qid = parseInt(params.id.toString());
   const [show, setShow] = useState<TvPageProps>({} as TvPageProps);
   const [showAlert, setShowAlert] = useState(false);
   const [showExistAlert, setShowExistAlert] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
     findById(qid, "tv")
@@ -48,6 +51,12 @@ const MoviePage = () => {
   } = show;
 
   const handleSaveLater = async () => {
+    if (!user) {
+      setUserLoggedIn(true);
+      setTimeout(() => {
+        setUserLoggedIn(false);
+      }, 3000);
+    }  
     const response = await fetch(`/api/watchlater/${id}/tv`);
     const data = await response.json();
     const { success, exists } = data;
@@ -130,6 +139,17 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+      {userLoggedIn && (
+        <div className="absolute top-4 right-4">
+          <Alert>
+            <Terminal className="h-3 w-3" />
+            <AlertTitle>Log In to add Show to watch later</AlertTitle>
+            <AlertDescription>
+              Please log in to add this Show to your watch later list.
+            </AlertDescription>
+          </Alert>
+        </div>
+      )}
       {showAlert && (
         <div className="absolute top-4 right-4">
           <Alert>
