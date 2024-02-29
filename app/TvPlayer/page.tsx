@@ -66,8 +66,8 @@ export default function TvPlayer() {
     <div>
       <div className="mt-12 md:ml-9 flex flex-col md:flex-row ">
         <iframe
-          // src={`https://embed.smashystream.com/playere.php?tmdb=${id}_ID&season=${season}&episode=${episode}`}
-          src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
+          src={`https://embed.smashystream.com/playere.php?tmdb=${id}_ID&season=${season}&episode=${episode}`}
+          // src={`https://blackvid.space/embed?tmdb=${id}&season=${season}&episode=${episode}`}
           allowFullScreen
           title="Embedded Content"
           width="100%"

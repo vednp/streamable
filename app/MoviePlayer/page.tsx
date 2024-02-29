@@ -13,8 +13,8 @@ export default function MoviePlayer() {
     <div>
       <div>
         <iframe
-          // src={`https://embed.smashystream.com/playere.php?tmdb=${id}`}
-          src={`https://blackvid.space/embed?tmdb=${id}`}
+          src={`https://embed.smashystream.com/playere.php?tmdb=${id}`}
+          // src={`https://blackvid.space/embed?tmdb=${id}`}
           referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
