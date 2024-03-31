@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -62,22 +63,11 @@ export default function TvPlayer() {
 
   const { overview, name, episode_number, season_number } = episodeInfo;
 
-  // var frames = document.getElementsByTagName("iframe");
-  // for (var i = 0; i < frames.length; i++) {
-  //   var frame = frames[i];
-  //   frame.setAttribute(
-  //     "sandbox",
-  //     "allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-scripts allow-top-navigation allow-forms"
-  //   );
-  // }
-
   return (
     <div>
-      <div className="mt-12 md:ml-9 flex md:flex-row flex-col">
+      <div className="mt-12 md:ml-9 flex flex-col md:flex-row ">
         <iframe
           src={`https://vidsrc.to/embed/tv/${id}/${season}/${episode}`}
-          // src={`https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}`}
-          referrerPolicy="origin"
           allowFullScreen
           title="Embedded Content"
           width="100%"
@@ -90,9 +80,9 @@ export default function TvPlayer() {
           </p>
           <p className="text-3xl mb-4 font-bold text-cyan-100">{name}</p>
           <p className="text-cyan-100">{overview}</p>
-        </div>
+        </div> 
       </div>
-      <div className=" flex-col md:flex justify-center ">
+      <div className=" flex flex-col md:flex-row ml-16 md:ml-0 justify-center ">
         <div className="flex flex-col space-y-2 p-5">
           <label htmlFor="season" className="text-sm font-medium text-cyan-100">
             Season:
@@ -111,7 +101,7 @@ export default function TvPlayer() {
               ))}
           </select>
         </div>
-        <div className="flex flex-col md:flex-row space-y-2 p-5">
+        <div className="flex flex-col space-y-2 p-5">
           <label
             htmlFor="episode"
             className="text-sm font-medium text-cyan-100"
