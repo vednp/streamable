@@ -13,7 +13,7 @@ export default function MoviePlayer() {
     <div>
       <div>
         <iframe
-          src={`https://embed.smashystream.com/playere.php?tmdb=${id}`}
+          src={`https://vidfast.pro/movie/${id}`}
           // src={`https://blackvid.space/embed?tmdb=${id}`}
           referrerPolicy="origin"
           allowFullScreen
